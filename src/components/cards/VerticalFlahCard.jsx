@@ -1,29 +1,34 @@
-import React from 'react'
-import sofa from '../../Assets/Photos/sofa.png'
-export const VerticalFlahCard = () => {
-    // 
+import React from 'react';
+import Slider from 'react-slick';
+import sofa from '../../Assets/Photos/sofa.png';
+export const VerticalFlahCard = ({ onClick }) => {
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        initialSlide: 0,
+        cssEase: "linear",
+        nextArrow: <LeftArrow />,
+        prevArrow: <RightArrow />,
+
+    };
     return (
         <div className="bg-white max-w-[280px]  border-gray-border group relative border">
             <span className="absolute bg-primary-toned text-center text-red px-2 py-1 rounded-sm left-2 top-2 text-[10px]">
                 New
             </span>
-            <figure className='p-2 my-4  relative'>
+            <figure className='p-2 my-4  relative pic'>
                 {/* navigations */}
-                <button className="bg-dark h-7 w-7 rounded-full  justify-center items-center absolute top-1/2 right-2 group-hover:flex hidden" onClick>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-white text-center place-items-center">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
-                    </svg>
 
-                </button>
-                <button className="bg-dark h-7 w-7 rounded-full flex justify-center items-center absolute top-1/2 left-2 group-hover:flex hidden" onClick>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-white text-center place-items-center ">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75 " />
-                    </svg>
-
-
-                </button>
                 {/* navigations */}
-                <img src={sofa} alt="sofa" className="mx-auto" />
+                <Slider {...settings}>
+                    {
+                        [1, 2, 3, 4, 5].map((item, i) => <img src={sofa} alt="sofa" className="mx-auto" key={item} />)
+                    }
+
+                </Slider>
             </figure>
             <div className="p-5 ">
                 <header className="flex flex-col justify-start items-start gap-4 mb-4">
@@ -37,7 +42,7 @@ export const VerticalFlahCard = () => {
                     <div className="inline-flex items-center group-hover:hidden ">
                         {
                             [1, 2, 3, 4, 5].map((item, i) =>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-gold">
+                                <svg key={item ? item : i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-gold">
                                     <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
                                 </svg>
 
@@ -80,5 +85,33 @@ export const VerticalFlahCard = () => {
             </div>
 
         </div >
+    )
+}
+
+
+
+
+
+export const LeftArrow = ({ onClick }) => {
+    return (
+
+        <button className="bg-dark h-7 w-7 rounded-full flex justify-center items-center absolute top-1/2 left-2 group-hover:flex hidden" onClick={onClick}>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-white text-center place-items-center ">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75 " />
+            </svg>
+
+
+        </button>
+
+    )
+}
+export const RightArrow = ({ onClick }) => {
+    return (
+        <button className="bg-dark h-7 w-7 rounded-full  justify-center items-center absolute top-1/2 right-2 group-hover:flex hidden z-10" onClick={onClick}>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-white text-center place-items-center">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+            </svg>
+
+        </button>
     )
 }
